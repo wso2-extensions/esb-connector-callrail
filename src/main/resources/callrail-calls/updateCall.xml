@@ -34,20 +34,17 @@
         <!--Construct payload for optional parameters -->
         <script language="js">
             <![CDATA[
-	  				payload = mc.getPayloadJSON();
-	  				
-					var tag = mc.getProperty("uri.var.tag");
-					var note = mc.getProperty("uri.var.note");
-
-					if ( tag != null && tag != "") { 				
-						payload.tag = tag ;	
-					}
-					
-					if ( note != null && note != "") { 				
-						payload.note = note;			
-					}
-					mc.setPayloadJSON(payload);	
-			]]>
+            payload = mc.getPayloadJSON();
+            var tag = mc.getProperty("uri.var.tag");
+            var note = mc.getProperty("uri.var.note");
+            if ( tag != null && tag != "") {
+            payload.tag = tag ;
+            }
+            if ( note != null && note != "") {
+            payload.note = note;
+            }
+            mc.setPayloadJSON(payload);
+            ]]>
         </script>
         <call>
             <endpoint>
