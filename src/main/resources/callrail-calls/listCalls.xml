@@ -32,10 +32,39 @@
         <property name="uri.var.companyId" expression="$func:companyId"/>
         <property name="uri.var.startDate" expression="$func:startDate"/>
         <property name="uri.var.endDate" expression="$func:endDate"/>
+        <script language="js">
+            <![CDATA[
+            var perPage = mc.getProperty('uri.var.perPage');
+            var page = mc.getProperty('uri.var.page');
+            var companyId = mc.getProperty('uri.var.companyId');
+            var startDate = mc.getProperty('uri.var.startDate');
+            var endDate = mc.getProperty('uri.var.endDate');
+            var urlQuery="";
+            if (perPage != null && perPage != ""){
+                urlQuery += 'per_page=' + perPage + '&';
+            }
+            if (page != null && page != ""){
+                urlQuery += 'page=' + page + '&';
+            }
+            if (companyId != null && companyId != ""){
+                urlQuery += 'company_id=' + companyId + '&';
+            }
+            if (startDate != null && startDate != ""){
+                urlQuery += 'start_date=' + startDate + '&';
+            }
+            if (endDate != null && endDate != ""){
+                urlQuery += 'end_date=' + endDate + '&';
+            }
+            if (urlQuery != null && urlQuery != ""){
+                urlQuery = '?' + urlQuery.toString().substring(0, urlQuery.toString().lastIndexOf("&"));
+                mc.setProperty('uri.var.urlQuery',urlQuery);
+            }
+         ]]>
+        </script>
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="{uri.var.apiUrl}/calls.json?per_page={uri.var.perPage}&amp;page={uri.var.page}&amp;company_id={uri.var.companyId}&amp;start_date={uri.var.startDate}&amp;end_date={uri.var.endDate}"/>
+                      uri-template="{uri.var.apiUrl}/calls.json{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
         <!-- Remove response custom header information -->

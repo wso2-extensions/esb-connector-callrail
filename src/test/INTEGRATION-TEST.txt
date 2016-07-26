@@ -10,11 +10,10 @@ Pre-requisites:
 
     - Microsoft WINDOWS V-7
     - Ubuntu 14.04
-    - WSO2 ESB 4.9.0
+    - WSO2 ESB 4.9.0, 5.0.0-BETA
  
 Steps to follow in setting integration test.
- 1.  Download ESB 4.9.0 from official website.
- 2.  Deploy relevant patches, if applicable.
+ 1.  Download ESB 5.0.0-BETA and add "-XX:-UseSplitVerifier" under $JVM_MEM_OPTS into {ESB_HOME}/bin/wso2server.sh".
 
 STEPS:
 
@@ -27,7 +26,7 @@ STEPS:
 		NOTE : CERT_FILE_NAME is the file name which was extracted from callrail, change it accordingly. (e.g. -.callrail.com)
 			   CERT_NAME is name of the certificate. (e.g. callrail)
 	   
-	iii)Go to new ESB 4.9.0 folder and place the downloaded certificate in "<ESB_HOME>/repository/resources/security/"
+	iii)Go to new ESB 5.0.0-BETA folder and place the downloaded certificate in "<ESB_HOME>/repository/resources/security/"
 
 	iv) Navigate to "<ESB_HOME>/repository/resources/security/" using command prompt and execute keytool -importcert -file CERT_FILE_NAME -keystore client-truststore.jks -alias "CERT_NAME" in command line to import Callrail certificate in to keystore. Give "wso2carbon" as password.
 		NOTE : CERT_FILE_NAME is the file name which was extracted from callrail, change it accordingly. (e.g. -.callrail.com)
@@ -49,7 +48,7 @@ STEPS:
 	<messageBuilder contentType="text/html"                                
 					  class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
 	
- 3. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "{esb-connector-callrail}/repository/".
+ 3. Compress modified ESB as wso2esb-5.0.0-BETA.zip and copy that zip file in to location "{esb-connector-callrail}/repository/".
 	
  4. Create a CallRail account and derive the API key:
 	i) 	 Using the URL "https://app.callrail.com" create a CallRail Free Trial account.
@@ -75,14 +74,5 @@ STEPS:
 	xi)		startDate - Preferred start date in the format of yyyy-mm-dd
 	xii)	timeOut - 10000
 
-
  6. Navigate to "<esb-connector-callrail>" and run the following command.
                                 $ mvn clean install
-
- NOTE : 
-	  -CallRail Free trial account is only valid for 14 days.
-	  -Following CallRail test account can be used to run the integration tests.
- 
-	   Username : wso2connector.abdera@gmail.com
-	   Password : connector@123
-	   API Key  : b90746ad2d256cb85ef19663e8e24bd7
