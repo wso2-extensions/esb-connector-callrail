@@ -51,7 +51,7 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
 
-        init("callrail-connector-1.0.1-SNAPSHOT");
+        init("callrail-connector-1.0.1");
 
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
@@ -79,9 +79,12 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsers_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("users").length(), esbRestResponse.getBody().getJSONArray("users").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("users").length(),
+                            esbRestResponse.getBody().getJSONArray("users").length());
     }
 
     /**
@@ -99,11 +102,15 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsers_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
         Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("users").length(), esbRestResponse.getBody().getJSONArray("users").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("users").length(),
+                            esbRestResponse.getBody().getJSONArray("users").length());
     }
 
     /**
@@ -119,9 +126,12 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listCalls_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("calls").length(), esbRestResponse.getBody().getJSONArray("calls").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("calls").length(),
+                            esbRestResponse.getBody().getJSONArray("calls").length());
     }
 
     /**
@@ -131,19 +141,24 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
     public void testListCallsWithOptionalParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:listCalls");
 
-        String apiEndPoint = apiUrl + "/v1/calls.json?per_page=" + perPage + "&page=" + page + "&start_date=" + connectorProperties.getProperty("startDate") + "&company_id=" + connectorProperties.getProperty("companyId");
+        String apiEndPoint = apiUrl + "/v1/calls.json?per_page=" + perPage + "&page=" + page + "&start_date="
+                             + connectorProperties.getProperty("startDate") + "&company_id="
+                             + connectorProperties.getProperty("companyId");
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listCalls_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
         Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("calls").length(), esbRestResponse.getBody().getJSONArray("calls").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("calls").length(),
+                            esbRestResponse.getBody().getJSONArray("calls").length());
     }
 
 
@@ -160,9 +175,12 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listTags_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("tags").length(), esbRestResponse.getBody().getJSONArray("tags").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("tags").length(),
+                            esbRestResponse.getBody().getJSONArray("tags").length());
     }
 
     /**
@@ -173,19 +191,24 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         esbRequestHeadersMap.put("Action", "urn:listTags");
 
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/tags.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/tags.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listTags_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("tags").length(), esbRestResponse.getBody().getJSONArray("tags").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("page"),
+                            esbRestResponse.getBody().getString("page"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("tags").length(),
+                            esbRestResponse.getBody().getJSONArray("tags").length());
     }
 
     /**
@@ -195,7 +218,8 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
     public void testUpdateCallWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:updateCall");
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_updateCall_mandatory.json", parametersMap);
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_updateCall_mandatory.json",
+                                    parametersMap);
 
         Assert.assertEquals(204, esbRestResponse.getHttpStatusCode());
     }
@@ -236,167 +260,211 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
     /**
      * Positive test case for listUsersForSessionTrackerCallAlerts method with mandatory parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerCallAlerts} integration test with mandatory parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerCallAlerts} integration test with " +
+                                      "mandatory parameters.")
     public void testListUsersForSessionTrackerCallAlertsWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:listUsersForSessionTrackerCallAlerts");
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId") + "/call_alerts.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId")
+                             + "/call_alerts.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSessionTrackerCallAlerts_mandatory.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSessionTrackerCallAlerts_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(), esbRestResponse.getBody().getJSONArray("call_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("call_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSessionTrackerCallAlerts method with optional parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerCallAlerts} integration test with optional parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerCallAlerts} integration test with " +
+                                      "optional parameters.")
     public void testListUsersForSessionTrackerCallAlertsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listUsersForSessionTrackerCallAlerts");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId") + "/call_alerts.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId")
+                             + "/call_alerts.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSessionTrackerCallAlerts_optional.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSessionTrackerCallAlerts_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(), esbRestResponse.getBody().getJSONArray("call_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("call_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSessionTrackerSmsAlerts method with mandatory parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerSmsAlerts} integration test with mandatory parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerSmsAlerts} integration test with " +
+                                      "mandatory parameters.")
     public void testListUsersForSessionTrackerSmsAlertsWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:listUsersForSessionTrackerSmsAlerts");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId") + "/sms_alerts.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId")
+                             + "/sms_alerts.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSessionTrackerSmsAlerts_mandatory.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSessionTrackerSmsAlerts_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(), esbRestResponse.getBody().getJSONArray("sms_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("sms_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSessionTrackerSmsAlerts method with optional parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerSmsAlerts} integration test with optional parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSessionTrackerSmsAlerts} integration test with optional" +
+                                      " parameters.")
     public void testListUsersForSessionTrackerSmsAlertsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listUsersForSessionTrackerSmsAlerts");
 
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId") + "/sms_alerts.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers/" + connectorProperties.getProperty("sessionTrackerId")
+                             + "/sms_alerts.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
-
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSessionTrackerSmsAlerts_optional.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSessionTrackerSmsAlerts_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(), esbRestResponse.getBody().getJSONArray("sms_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("sms_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSourceTrackerCallAlerts method with mandatory parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerCallAlerts} integration test with mandatory parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerCallAlerts} integration test with " +
+                                      "mandatory parameters.")
     public void testListUsersForSourceTrackerCallAlertsWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:listUsersForSourceTrackerCallAlerts");
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId") + "/call_alerts.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId")
+                             + "/call_alerts.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
-
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSourceTrackerCallAlerts_mandatory.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSourceTrackerCallAlerts_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(), esbRestResponse.getBody().getJSONArray("call_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("call_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSourceTrackerCallAlerts method with optional parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerCallAlerts} integration test with optional parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerCallAlerts} integration test with optional " +
+                                      "parameters.")
     public void testListUsersForSourceTrackerCallAlertsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listUsersForSourceTrackerCallAlerts");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId") + "/call_alerts.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId")
+                             + "/call_alerts.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
-
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSourceTrackerCallAlerts_optional.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSourceTrackerCallAlerts_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(), esbRestResponse.getBody().getJSONArray("call_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("call_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("call_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSourceTrackerSmsAlerts method with mandatory parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerSmsAlerts} integration test with mandatory parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerSmsAlerts} integration test with mandatory" +
+                                      " parameters.")
     public void testListUsersForSourceTrackerSmsAlertsWithMandatoryParameters() throws IOException, JSONException {
         esbRequestHeadersMap.put("Action", "urn:listUsersForSourceTrackerSmsAlerts");
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId") + "/sms_alerts.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId")
+                             + "/sms_alerts.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
-
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSourceTrackerSmsAlerts_mandatory.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSourceTrackerSmsAlerts_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(), esbRestResponse.getBody().getJSONArray("sms_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("sms_alerts").length());
     }
 
     /**
      * Positive test case for listUsersForSourceTrackerSmsAlerts method with optional parameters.
      */
-    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerSmsAlerts} integration test with optional parameters.")
+    @Test(priority = 1, description = "callrail {listUsersForSourceTrackerSmsAlerts} integration test with optional" +
+                                      " parameters.")
     public void testListUsersForSourceTrackerSmsAlertsWithOptionalParameters() throws IOException, JSONException {
 
         esbRequestHeadersMap.put("Action", "urn:listUsersForSourceTrackerSmsAlerts");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId") + "/sms_alerts.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers/" + connectorProperties.getProperty("sourceTrackerId")
+                             + "/sms_alerts.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listUsersForSourceTrackerSmsAlerts_optional.json");
+                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+                                    "esb_listUsersForSourceTrackerSmsAlerts_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(), esbRestResponse.getBody().getJSONArray("sms_alerts").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("sms_alerts").length(),
+                            esbRestResponse.getBody().getJSONArray("sms_alerts").length());
     }
 
     /**
@@ -407,17 +475,20 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         esbRequestHeadersMap.put("Action", "urn:listSourceTrackers");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listSourceTrackers_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("source_trackers").length(), esbRestResponse.getBody().getJSONArray("source_trackers").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("source_trackers").length(),
+                            esbRestResponse.getBody().getJSONArray("source_trackers").length());
     }
 
     /**
@@ -429,18 +500,24 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         esbRequestHeadersMap.put("Action", "urn:listSourceTrackers");
 
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/source_trackers.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/source_trackers.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listSourceTrackers_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("source_trackers").length(), esbRestResponse.getBody().getJSONArray("source_trackers").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("page"),
+                            esbRestResponse.getBody().getString("page"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("source_trackers").length(),
+                            esbRestResponse.getBody().getJSONArray("source_trackers").length());
     }
 
     /**
@@ -451,17 +528,20 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
 
         esbRequestHeadersMap.put("Action", "urn:listSessionTrackers");
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers.json";
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers.json";
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listSessionTrackers_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("session_trackers").length(), esbRestResponse.getBody().getJSONArray("session_trackers").length());
-
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("session_trackers").length(),
+                            esbRestResponse.getBody().getJSONArray("session_trackers").length());
     }
 
     /**
@@ -473,18 +553,24 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         esbRequestHeadersMap.put("Action", "urn:listSessionTrackers");
 
 
-        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId") + "/session_trackers.json?per_page=" + perPage + "&page=" + page;
+        String apiEndPoint = apiUrl + "/v1/companies/" + connectorProperties.getProperty("companyId")
+                             + "/session_trackers.json?per_page=" + perPage + "&page=" + page;
 
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listSessionTrackers_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("session_trackers").length(), esbRestResponse.getBody().getJSONArray("session_trackers").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("page"),
+                            esbRestResponse.getBody().getString("page"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("session_trackers").length(),
+                            esbRestResponse.getBody().getJSONArray("session_trackers").length());
     }
 
     /**
@@ -500,9 +586,12 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listCompanies_mandatory.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("companies").length(), esbRestResponse.getBody().getJSONArray("companies").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("companies").length(),
+                            esbRestResponse.getBody().getJSONArray("companies").length());
     }
 
     /**
@@ -521,12 +610,15 @@ public class CallRailConnectorIntegrationTest extends ConnectorIntegrationTestBa
         RestResponse<JSONObject> esbRestResponse =
                 sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "esb_listCompanies_optional.json");
 
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"), esbRestResponse.getBody().getString("total_pages"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"), esbRestResponse.getBody().getString("total_records"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("page"), esbRestResponse.getBody().getString("page"));
-        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"), esbRestResponse.getBody().getString("per_page"));
-        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("companies").length(), esbRestResponse.getBody().getJSONArray("companies").length());
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_pages"),
+                            esbRestResponse.getBody().getString("total_pages"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("total_records"),
+                            esbRestResponse.getBody().getString("total_records"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("page"),
+                            esbRestResponse.getBody().getString("page"));
+        Assert.assertEquals(apiRestResponse.getBody().getString("per_page"),
+                            esbRestResponse.getBody().getString("per_page"));
+        Assert.assertEquals(apiRestResponse.getBody().getJSONArray("companies").length(),
+                            esbRestResponse.getBody().getJSONArray("companies").length());
     }
-
-
 }
