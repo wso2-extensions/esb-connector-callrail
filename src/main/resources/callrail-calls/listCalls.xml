@@ -41,23 +41,23 @@
             var endDate = mc.getProperty('uri.var.endDate');
             var urlQuery="";
             if (perPage != null && perPage != ""){
-               urlQuery += 'per_page=' + perPage + '&';
+                urlQuery += 'per_page=' + perPage + '&';
             }
             if (page != null && page != ""){
-               urlQuery += 'page=' + page + '&';
+                urlQuery += 'page=' + page + '&';
             }
             if (companyId != null && companyId != ""){
-               urlQuery += 'company_id=' + companyId + '&';
+                urlQuery += 'company_id=' + companyId + '&';
             }
             if (startDate != null && startDate != ""){
-               urlQuery += 'start_date=' + startDate + '&';
+                urlQuery += 'start_date=' + startDate + '&';
             }
             if (endDate != null && endDate != ""){
-               urlQuery += 'end_date=' + endDate + '&';
+                urlQuery += 'end_date=' + endDate + '&';
             }
             if (urlQuery != null && urlQuery != ""){
-               urlQuery = '?' + urlQuery.toString().substring(0, urlQuery.toString().lastIndexOf("&"));
-               mc.setProperty('uri.var.urlQuery',urlQuery);
+                urlQuery = '?' + urlQuery.toString().substring(0, urlQuery.toString().lastIndexOf("&"));
+                mc.setProperty('uri.var.urlQuery',urlQuery);
             }
          ]]>
         </script>
@@ -67,7 +67,6 @@
                       uri-template="{uri.var.apiUrl}/calls.json{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
-
         <!-- Remove response custom header information -->
         <header name="X-Runtime" scope="transport" action="remove"/>
         <header name="X-UA-Compatible" scope="transport" action="remove"/>
