@@ -4,7 +4,7 @@
     "category": "Communication",
     "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/CallRail+Connector",
     "description": "The CallRail connector allows you to access the CallRail REST API through WSO2 ESB. CallRail facilitates phone call tracking, recording, and analytics. With CallRail, you can find out which phone conversation came from which ad, which traffic source, and which keyword, and also who on your team picked up the phone, what was the conversation, and so on.",
-    "status": "Active",
+    "status": "Inactive",
     "labels": [
         "connector"
     ],
